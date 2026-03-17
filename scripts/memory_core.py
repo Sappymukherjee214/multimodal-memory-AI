@@ -145,7 +145,18 @@ class MultimodalMemoryCore:
         return saliency
 
     def search_by_text(self, query_text, k=10, apply_decay=True, do_rerank=True):
-        """Search with Optional Two-Stage Re-ranking."""
+        """
+        Search with Optional Two-Stage Re-ranking.
+        
+        Args:
+            query_text (str): Natural language query.
+            k (int): Number of candidates to retrieve.
+            apply_decay (bool): Whether to apply temporal attenuation to scores.
+            do_rerank (bool): Use Stage-2 Cross-Modal attention for re-ranking.
+            
+        Returns:
+            List[Dict]: Ranked list of metadata dictionaries for the retrieved memories.
+        """
         tokens = self.tokenizer(query_text, return_tensors="pt", padding=True, truncation=True).to(self.device)
         
         with torch.no_grad():
@@ -171,7 +182,15 @@ class MultimodalMemoryCore:
     def search_with_associations(self, query_text, k=3):
         """
         Advanced GAR (Graph-Augmented Retrieval).
-        Finds direct matches AND related memories via graph walk.
+        Finds direct semantic matches AND retrieves related episodic context via graph walks.
+        Useful for "Personal AI" workflows where context is distributed over time.
+        
+        Args:
+            query_text (str): User query.
+            k (int): Number of primary and associative results to return.
+            
+        Returns:
+            Dict: Contains 'primary' matches and 'associative' context.
         """
         # 1. Get primary semantic candidates
         primary_candidates = self.search_by_text(query_text, k=k, do_rerank=True)
