@@ -1,0 +1,17 @@
+.venv/
+__pycache__/
+*.pyc
+data/raw/
+data/processed/
+reports/figures/
+reports/*.csv
+reports/*.png
+.env
+.ipynb_checkpoints/
+.DS_Store
+*.bin
+*.pth
+*.tgz
+*.zip
+.vscode/
+.idea/

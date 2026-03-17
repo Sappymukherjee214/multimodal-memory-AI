@@ -1,0 +1,31 @@
+# Core Deep Learning
+torch>=2.0.0
+torchvision>=0.15.0
+transformers>=4.30.0
+sentence-transformers>=2.2.2
+
+# Multimodal & Vision
+clip-anytorch>=2.5.0
+pillow>=9.5.0
+opencv-python>=4.7.0
+
+# Vector Database & Retrieval
+faiss-cpu>=1.7.4  # Use faiss-gpu if CUDA is available
+chromadb>=0.3.26
+
+# Data Processing & Visualization
+numpy>=1.24.3
+pandas>=2.0.2
+matplotlib>=3.7.1
+seaborn>=0.12.2
+scikit-learn>=1.2.2
+umap-learn>=0.5.3
+networkx>=3.1
+tqdm>=4.65.0
+gradio>=3.35.2
+librosa>=0.10.0
+kagglehub>=0.1.0
+
+# Experiment Tracking
+tensorboard>=2.13.0
+wandb>=0.15.4
